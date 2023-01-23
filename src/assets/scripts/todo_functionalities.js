@@ -20,7 +20,7 @@ form.addEventListener('submit', (e) => {
   const { value: todoDesc } = document.querySelector('#todo');
   const id = todos.length;
   addTodo(id, todoDesc);
-  form.reset();
+  return form.reset();
 });
 
 const editTodo = (target) => {
@@ -29,7 +29,7 @@ const editTodo = (target) => {
     target.parentElement.parentElement.classList.remove('yellow_color');
     const newDesc = target.value;
     todos.forEach((todo) => { if (Number(todo.id) === +id) todo.description = newDesc; });
-    Todo.saveTolocalStorage();
+    return Todo.saveTolocalStorage();
   });
 };
 
@@ -37,7 +37,7 @@ const removeTodo = (id) => {
   Todo.remove(id);
   Todo.saveTolocalStorage();
   loadTodo();
-  updateIndex();
+  return updateIndex();
 };
 
 todolist.addEventListener('click', (e) => {

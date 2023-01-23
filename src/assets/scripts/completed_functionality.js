@@ -5,7 +5,7 @@ const buttonClear = document.querySelector('.clear_btn');
 
 const updateIndex = () => {
   todos.forEach((todo, index) => { todo.id = index; });
-  Todo.saveTolocalStorage();
+  return Todo.saveTolocalStorage();
 };
 
 const completedTodo = (target) => {
@@ -14,7 +14,7 @@ const completedTodo = (target) => {
     if (todo.id === +id) todo.completed = !todo.completed;
   });
   Todo.saveTolocalStorage();
-  loadTodo();
+  return loadTodo();
 };
 
 const clearAllTodo = () => {
@@ -22,7 +22,7 @@ const clearAllTodo = () => {
   Todo.setTolocalStorage(newTodos);
   Todo.saveTolocalStorage();
   updateIndex();
-  loadTodo();
+  return loadTodo();
 };
 
 buttonClear.addEventListener('click', () => clearAllTodo());
